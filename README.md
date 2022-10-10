@@ -1,10 +1,12 @@
 # Third-Party APIs: Work Day Scheduler
 
-## Your Task
+## Description
 
+```md
 Create a simple calendar application that allows a user to save events for each hour of the day by modifying starter code. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
 
 You'll need to use the [Moment.js](https://momentjs.com/) library to work with date and time. Be sure to read the documentation carefully and concentrate on using Moment.js in the browser.
+```
 
 ## User Story
 
@@ -32,40 +34,44 @@ WHEN I refresh the page
 THEN the saved events persist
 ```
 
-The following animation demonstrates the application functionality:
-
-![A user clicks on slots on the color-coded calendar and edits the events.](./Assets/05-third-party-apis-homework-demo.gif)
-
 ## Usage
 
+```md
 Once deployed the application can be viewed in a traditional desktop web browser. This is a simple calendar application that allows a user to save events for each hour of the day. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
 
 You'll need to use the [Moment.js](https://momentjs.com/) library to work with date and time. Be sure to read the documentation carefully and concentrate on using Moment.js in the browser.
+```
 
 ## Credits
 
+```md
 Collaborators on this project included instructional staff, TAs, and students from University of Central Florida.
- A special thanks to my daughter, Yennefer. Small but mighty!
+A special thanks to my daughter, Yennefer. Small but mighty!
+```
 
- ## References and tutorials utilized
+## References and tutorials utilized
 
-* Javascript: [W3 Schools] (https://www.w3schools.com/js/js_intro.asp/)
-* Markdown: [Markdown Guide] (https://www.markdownguide.org/basic-syntax/)
-* CSS: [W3 Schools] (https://www.w3schools.com/cssref/)
-* Reset: [Eric Meyer reset](https://meyerweb.com/eric/tools/css/reset/)
-* Jquery: [W3 Schools] (https://www.w3schools.com/jquery/default.asp/)
+* Javascript: [w3 Schools](https://www.w3schools.com/js/js_intro.asp/)
+* Markdown: [Markdown Guide](https://www.markdownguide.org/basic-syntax/)
+* CSS: [W3 Schools](https://www.w3schools.com/cssref/)
+* Reset: [Eric Meyer](https://meyerweb.com/eric/tools/css/reset/)
+* Jquery: [W3 Schools](https://www.w3schools.com/jquery/default.asp/)
+* Bootstrap: [W3 Schools](https://www.w3schools.com/bootstrap/default.asp/)
 
 ## Links
 
 * Deployed site: [Live site-404pandas](linkToLiveSiteHere)
 * Github repo: [Github-404pandas](linkToRepoHere)
-
+  
 ## Screenshots
 
-![Screenshot of live image](directPathHere)
-
+![Screenshot of live image](directPathHere)  
+  
+![Animation of goal site](./assets/images/05-third-party-apis-homework-demo.gif/)  
+  
 ## License
 
+```md
 MIT License
 
 Copyright (c) [2022] [Mary Elenius]
@@ -87,3 +93,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+```
