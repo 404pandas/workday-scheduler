@@ -1,4 +1,4 @@
-# 05 Third-Party APIs: Work Day Scheduler
+# Third-Party APIs: Work Day Scheduler
 
 ## Your Task
 
@@ -36,65 +36,54 @@ The following animation demonstrates the application functionality:
 
 ![A user clicks on slots on the color-coded calendar and edits the events.](./Assets/05-third-party-apis-homework-demo.gif)
 
+## Usage
 
-## Grading Requirements
+Once deployed the application can be viewed in a traditional desktop web browser. This is a simple calendar application that allows a user to save events for each hour of the day. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
 
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
+You'll need to use the [Moment.js](https://momentjs.com/) library to work with date and time. Be sure to read the documentation carefully and concentrate on using Moment.js in the browser.
 
-This Challenge is graded based on the following criteria: 
+## Credits
 
-### Technical Acceptance Criteria: 40%
+Collaborators on this project included instructional staff, TAs, and students from University of Central Florida.
+ A special thanks to my daughter, Yennefer. Small but mighty!
 
-* Satisfies all of the above acceptance criteria plus the following:
+ ## References and tutorials utilized
 
-  * Uses a date utility library to work with date and time
+* Javascript: [W3 Schools] (https://www.w3schools.com/js/js_intro.asp/)
+* Markdown: [Markdown Guide] (https://www.markdownguide.org/basic-syntax/)
+* CSS: [W3 Schools] (https://www.w3schools.com/cssref/)
+* Reset: [Eric Meyer reset](https://meyerweb.com/eric/tools/css/reset/)
+* Jquery: [W3 Schools] (https://www.w3schools.com/jquery/default.asp/)
 
-### Deployment: 32%
+## Links
 
-* Application deployed at live URL
+* Deployed site: [Live site-404pandas](linkToLiveSiteHere)
+* Github repo: [Github-404pandas](linkToRepoHere)
 
-* Application loads with no errors
+## Screenshots
 
-* Application GitHub URL submitted
+![Screenshot of live image](directPathHere)
 
-* GitHub repo contains application code
+## License
 
-### Application Quality: 15%
+MIT License
 
-* Application user experience is intuitive and easy to navigate
+Copyright (c) [2022] [Mary Elenius]
 
-* Application user interface style is clean and polished
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-* Application resembles the mock-up functionality provided in the Challenge instructions
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-### Repository Quality: 13%
-
-* Repository has a unique name
-
-* Repository follows best practices for file structure and naming conventions
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages
-
-* Repository contains quality README file with description, screenshot, and link to deployed application
-
-## Review
-
-You are required to submit the following for review:
-
-* The URL of the deployed application
-
-* The URL of the GitHub repository, with a unique name and a README describing the project
-
-- - -
-© 2022 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
-# workday-scheduler
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
