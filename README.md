@@ -56,11 +56,12 @@ A special thanks to my daughter, Yennefer. Small but mighty!
 * Reset: [Eric Meyer](https://meyerweb.com/eric/tools/css/reset/)
 * Jquery: [W3 Schools](https://www.w3schools.com/jquery/default.asp/)
 * Bootstrap: [W3 Schools](https://www.w3schools.com/bootstrap/default.asp/)
+* Example code: [mlportu Github](https://mlportu.github.io/workday-scheduler/)
 
 ## Links
 
-* Deployed site: [Live site-404pandas](linkToLiveSiteHere)
-* Github repo: [Github-404pandas](linkToRepoHere)
+* Deployed site: [Live site-404pandas](https://404pandas.github.io/workday-scheduler/)
+* Github repo: [Github-404pandas](https://github.com/404pandas/workday-scheduler)
   
 ## Screenshots
 
