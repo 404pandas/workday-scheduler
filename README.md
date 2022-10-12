@@ -2,23 +2,22 @@
 
 ## Description
 
-```md
+
 Create a simple calendar application that allows a user to save events for each hour of the day by modifying starter code. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
 
 You'll need to use the [Moment.js](https://momentjs.com/) library to work with date and time. Be sure to read the documentation carefully and concentrate on using Moment.js in the browser.
-```
+
 
 ## User Story
 
-```md
+
 AS AN employee with a busy schedule
 I WANT to add important events to a daily planner
 SO THAT I can manage my time effectively
-```
+
 
 ## Acceptance Criteria
 
-```md
 GIVEN I am using a daily planner to create a schedule
 WHEN I open the planner
 THEN the current day is displayed at the top of the calendar
@@ -32,22 +31,22 @@ WHEN I click the save button for that timeblock
 THEN the text for that event is saved in local storage
 WHEN I refresh the page
 THEN the saved events persist
-```
+
 
 ## Usage
 
-```md
+
 Once deployed the application can be viewed in a traditional desktop web browser. This is a simple calendar application that allows a user to save events for each hour of the day. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
 
 You'll need to use the [Moment.js](https://momentjs.com/) library to work with date and time. Be sure to read the documentation carefully and concentrate on using Moment.js in the browser.
-```
+
 
 ## Credits
 
-```md
+
 Collaborators on this project included instructional staff, TAs, and students from University of Central Florida.
 A special thanks to my daughter, Yennefer. Small but mighty!
-```
+
 
 ## References and tutorials utilized
 
@@ -71,7 +70,7 @@ A special thanks to my daughter, Yennefer. Small but mighty!
   
 ## License
 
-```md
+
 MIT License
 
 Copyright (c) [2022] [Mary Elenius]
@@ -93,4 +92,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-```
