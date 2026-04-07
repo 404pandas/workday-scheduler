@@ -333,12 +333,18 @@ function updateStats() {
 function bump(id, val) {
   const el = document.getElementById(id);
   if (!el) return;
-  if (parseInt(el.textContent, 10) !== val) {
-    el.textContent = val;
-    el.classList.remove('bump');
-    void el.offsetWidth;
-    el.classList.add('bump');
-  }
+  const from = parseInt(el.textContent, 10) || 0;
+  if (from === val) return;
+  // Animate counter with GSAP
+  const proxy = { n: from };
+  gsap.to(proxy, {
+    n: val,
+    duration: 0.55,
+    ease: 'power2.out',
+    onUpdate() { el.textContent = Math.round(proxy.n); },
+  });
+  // Scale pop
+  gsap.fromTo(el, { scale: 1.35, color: '#fff' }, { scale: 1, color: '#f0c040', duration: 0.45, ease: 'back.out(2)' });
 }
 
 // ── Quote ────────────────────────────────────────────────────
@@ -348,12 +354,14 @@ function renderQuote(idx) {
   const text = document.getElementById('geralt-quote');
   const cite = document.getElementById('quote-attribution');
   if (!text || !cite) return;
-  text.style.opacity = '0';
-  setTimeout(() => {
-    text.textContent = q.text;
-    cite.textContent = `— ${q.speaker}`;
-    text.style.opacity = '1';
-  }, 380);
+  gsap.to([text, cite], {
+    autoAlpha: 0, y: -8, duration: 0.3, ease: 'power2.in',
+    onComplete() {
+      text.textContent = q.text;
+      cite.textContent = `— ${q.speaker}`;
+      gsap.to([text, cite], { autoAlpha: 1, y: 0, duration: 0.45, ease: 'power2.out' });
+    },
+  });
 }
 
 function cycleQuote() {
@@ -605,28 +613,48 @@ function addItem(h) {
   setItems(h, items);
   Store.save();
   renderPanel(h);
+
+  const panel    = document.getElementById(`panel-${h}`);
+  const allItems = panel.querySelectorAll('.contract-item');
+  const newEl    = allItems[allItems.length - 1];
+  if (newEl) gsap.from(newEl, { y: -12, autoAlpha: 0, duration: 0.3, ease: 'power2.out' });
+
   // Focus the new textarea
-  const panel = document.getElementById(`panel-${h}`);
   const textareas = panel.querySelectorAll('.contract-textarea');
   textareas[textareas.length - 1]?.focus();
 }
 
 function deleteItem(h, itemId) {
-  const items   = getItems(h);
-  const item    = items.find(i => i.id === itemId);
-  if (!item) return;
+  const panel  = document.getElementById(`panel-${h}`);
+  const itemEl = panel?.querySelector(`[data-id="${itemId}"]`);
 
-  if (item.saved) {
-    state.orens     = Math.max(0, state.orens - (item.orens || 0));
-    state.signsCast = Math.max(0, state.signsCast - 1);
+  const commit = () => {
+    const current = getItems(h);
+    const target  = current.find(i => i.id === itemId);
+    if (!target) return;
+    if (target.saved) {
+      state.orens     = Math.max(0, state.orens - (target.orens || 0));
+      state.signsCast = Math.max(0, state.signsCast - 1);
+    }
+    const hadText = !!target.text;
+    setItems(h, current.filter(i => i.id !== itemId));
+    Store.save();
+    renderPanel(h);
+    updateStats();
+    Audio.clear();
+    if (hadText) showToast('Contract removed from the ledger.', 'danger');
+  };
+
+  if (itemEl) {
+    gsap.to(itemEl, {
+      x: 22, autoAlpha: 0, height: 0,
+      paddingTop: 0, paddingBottom: 0, marginBottom: 0,
+      duration: 0.28, ease: 'power2.in',
+      onComplete: commit,
+    });
+  } else {
+    commit();
   }
-
-  setItems(h, items.filter(i => i.id !== itemId));
-  Store.save();
-  renderPanel(h);
-  updateStats();
-  Audio.clear();
-  if (item.text) showToast('Contract removed from the ledger.', 'danger');
 }
 
 function saveItem(h, itemId) {
@@ -670,6 +698,10 @@ function saveItem(h, itemId) {
     if (saveBtn) {
       saveBtn.textContent = 'Sealed  ✦';
       saveBtn.classList.add('is-saved');
+      gsap.fromTo(saveBtn,
+        { scale: 0.85 },
+        { scale: 1, duration: 0.5, ease: 'back.out(3)' }
+      );
     }
   }
 
@@ -754,6 +786,7 @@ function clearPastContracts() {
   });
   Store.save();
   buildBoard();
+  animateBoard();
   updateStats();
   if (cleared > 0) {
     Audio.clear();
@@ -787,6 +820,67 @@ function applyFilters() {
     // Always show empty blocks when filtering so you can still add
     block.classList.toggle('hidden', !match && items.length > 0);
   });
+}
+
+// ── GSAP Animations ──────────────────────────────────────────
+
+function animateHeader() {
+  // Medallion persistent float (GSAP replaces the removed CSS animation)
+  gsap.to('.medallion-svg', {
+    y: -8,
+    duration: 3.2,
+    ease: 'sine.inOut',
+    yoyo: true,
+    repeat: -1,
+  });
+
+  // Entrance sequence
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  tl
+    .from('.ornament-line',    { scaleX: 0, duration: 0.7, stagger: 0.07, transformOrigin: 'center', ease: 'power2.inOut' }, 0)
+    .from('.medallion-svg',    { scale: 0, autoAlpha: 0, rotation: -200, duration: 1.1, ease: 'back.out(1.6)' }, 0.1)
+    .from('.main-title',       { y: 28, autoAlpha: 0, duration: 0.55 }, 0.65)
+    .from('.subtitle',         { y: 18, autoAlpha: 0, duration: 0.45 }, 0.82)
+    .from('.header-meta-row',  { y: 12, autoAlpha: 0, duration: 0.4  }, 0.96)
+    .from('#geralt-quote',     { y: 10, autoAlpha: 0, duration: 0.45 }, 1.06)
+    .from('#quote-attribution',{ y: 8,  autoAlpha: 0, duration: 0.35 }, 1.18)
+    .from('.stat-pill',        { y: 16, autoAlpha: 0, duration: 0.4, stagger: 0.09 }, 1.25)
+    .from('.controls-bar',     { y: -24, autoAlpha: 0, duration: 0.5, ease: 'power2.out' }, 1.5);
+}
+
+function animateBoard() {
+  // Kill existing scroll triggers so reloads (demo, purge) stay clean
+  ScrollTrigger.getAll().forEach(t => t.kill());
+
+  gsap.utils.toArray('.time-block').forEach(block => {
+    gsap.fromTo(block,
+      { x: -28, autoAlpha: 0 },
+      {
+        x: 0, autoAlpha: 1,
+        duration: 0.5,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: block,
+          start: 'top 91%',
+          once: true,
+        },
+      }
+    );
+  });
+
+  // Extra pulse on the "present" hour block when it enters view
+  const present = document.querySelector('.time-block.present .hour-number');
+  if (present) {
+    ScrollTrigger.create({
+      trigger: present,
+      start: 'top 88%',
+      once: true,
+      onEnter: () => gsap.fromTo(present,
+        { scale: 1.4, color: '#fff' },
+        { scale: 1, color: '#f0c040', duration: 0.6, ease: 'elastic.out(1, 0.5)' }
+      ),
+    });
+  }
 }
 
 // ── Demo Schedule ────────────────────────────────────────────
@@ -882,6 +976,7 @@ function loadDemo() {
 
   Store.save();
   buildBoard();
+  animateBoard();
   updateStats();
   showToast('Demo schedule loaded. Welcome to Kaer Morhen.', 'success');
 }
@@ -889,6 +984,7 @@ function loadDemo() {
 // ── Init ─────────────────────────────────────────────────────
 
 function init() {
+  gsap.registerPlugin(ScrollTrigger);
   Store.load();
   new ParticleSystem(document.getElementById('particle-canvas'));
 
@@ -906,15 +1002,24 @@ function init() {
   setInterval(updateClock, 1000);
   setInterval(updateHourColors, 60_000);
 
-  // Medallion click — spin + new quote
+  // Medallion click — GSAP spin + new quote
   document.getElementById('medallion-svg')?.addEventListener('click', () => {
-    const svg = document.getElementById('medallion-svg');
-    const deg = 360 + Math.random() * 360;
-    svg.style.transition  = 'transform 0.85s cubic-bezier(0.34,1.56,0.64,1)';
-    svg.style.transform   = `rotate(${deg}deg)`;
-    setTimeout(() => { svg.style.transition = ''; svg.style.transform = ''; }, 950);
     cycleQuote();
+    // Pause the float, spin 360-720°, then restart float
+    gsap.killTweensOf('.medallion-svg', 'y');
+    gsap.to('.medallion-svg', {
+      rotation: `+=${360 + Math.round(Math.random()) * 360}`,
+      duration: 0.9,
+      ease: 'back.out(1.4)',
+      onComplete() {
+        gsap.set('.medallion-svg', { rotation: 0 });
+        gsap.to('.medallion-svg', { y: -8, duration: 3.2, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+      },
+    });
   });
+
+  // Header animations run after plugin is registered
+  animateHeader();
 
   // Initial random quote
   state.quoteIndex = Math.floor(Math.random() * GERALT_QUOTES.length);
@@ -923,6 +1028,7 @@ function init() {
 
   // Build the board
   buildBoard();
+  animateBoard();
   updateStats();
 
   // Controls

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Background -->
+  <circle cx="16" cy="16" r="15.5" fill="#0a0a0f" stroke="#c9a227" stroke-width="1"/>
+  <!-- Inner ring hint -->
+  <circle cx="16" cy="16" r="13" fill="none" stroke="#c9a227" stroke-width="0.4" stroke-dasharray="3 2"/>
+  <!-- Ears -->
+  <polygon points="9,13 7,4 14,11"   fill="#c9a227"/>
+  <polygon points="23,13 25,4 18,11" fill="#c9a227"/>
+  <!-- Inner ear detail -->
+  <polygon points="9.5,12.5 8,6 13,11"   fill="#1a1510"/>
+  <polygon points="22.5,12.5 24,6 19,11" fill="#1a1510"/>
+  <!-- Head -->
+  <ellipse cx="16" cy="17"   rx="8"   ry="7.5" fill="#c9a227"/>
+  <!-- Snout -->
+  <ellipse cx="16" cy="20.5" rx="5"   ry="3.5" fill="#b8941f"/>
+  <!-- Eyes -->
+  <ellipse cx="12.5" cy="15.5" rx="2.2" ry="2.5" fill="#0a0a0f"/>
+  <ellipse cx="19.5" cy="15.5" rx="2.2" ry="2.5" fill="#0a0a0f"/>
+  <!-- Cat-slit pupils with amber glow -->
+  <ellipse cx="12.5" cy="15.5" rx="1.1" ry="1.6" fill="#ff6600"/>
+  <ellipse cx="19.5" cy="15.5" rx="1.1" ry="1.6" fill="#ff6600"/>
+  <!-- Nose -->
+  <ellipse cx="16" cy="20" rx="1.4" ry="0.9" fill="#3a2a10"/>
+</svg>

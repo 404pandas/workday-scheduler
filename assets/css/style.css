@@ -147,15 +147,14 @@ header, nav, main, footer { position: relative; z-index: 10; }
 .medallion-svg {
   width: 140px;
   height: 140px;
-  animation: medallion-float 6s ease-in-out infinite;
   filter: drop-shadow(0 0 12px rgba(201,162,39,.5));
   cursor: pointer;
   transition: filter var(--transition);
+  will-change: transform;
 }
 
 .medallion-svg:hover {
   filter: drop-shadow(0 0 24px rgba(201,162,39,.9));
-  animation-play-state: paused;
 }
 
 .medallion-pulse {
@@ -165,12 +164,6 @@ header, nav, main, footer { position: relative; z-index: 10; }
   border: 2px solid var(--gold);
   opacity: 0;
   animation: ring-pulse 4s ease-out infinite;
-}
-
-@keyframes medallion-float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  33%       { transform: translateY(-6px) rotate(1deg); }
-  66%       { transform: translateY(-3px) rotate(-1deg); }
 }
 
 @keyframes ring-pulse {
@@ -236,7 +229,6 @@ header, nav, main, footer { position: relative; z-index: 10; }
   margin: 0 auto;
   line-height: 1.7;
   min-height: 3.5em;
-  transition: opacity .5s ease;
 }
 
 .quote-open, .quote-close {
@@ -297,17 +289,7 @@ cite {
   color: var(--gold-light);
   min-width: 24px;
   text-align: right;
-  transition: transform .3s, color .3s;
-}
-
-.stat-val.bump {
-  animation: stat-bump .4s ease;
-}
-
-@keyframes stat-bump {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.4); color: #fff; }
-  100% { transform: scale(1); }
+  display: inline-block; /* needed for GSAP scale transforms */
 }
 
 /* ── Controls Bar ───────────────────────────────────────────── */
@@ -436,13 +418,7 @@ cite {
   border-radius: var(--radius);
   overflow: hidden;
   transition: border-color var(--transition), box-shadow var(--transition);
-  animation: block-enter .35s ease both;
-  animation-delay: calc(var(--i, 0) * 35ms);
-}
-
-@keyframes block-enter {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
+  /* entrance handled by GSAP + ScrollTrigger */
 }
 
 .time-block.past {
